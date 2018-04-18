@@ -1,0 +1,70 @@
+<input type="hidden" name="model.id" value="#(model.id??)" />
+<div class="layui-form-item">
+	<label class="layui-form-label">证件编号</label>
+	<div class="layui-input-block">
+		#if(null==model.itemCode??)
+		<input type="text" name="model.itemCode" value="#(model.itemCode??)"  class="layui-input">
+		#else
+		<input type="text" name="model.itemCode" readonly style="background-color:#F2F2F2" value="#(model.itemCode??)"  class="layui-input">
+		#end
+	</div>
+</div>
+<div class="layui-form-item">
+	<label class="layui-form-label">证件类型</label>
+	<div class="layui-input-block">
+		<input type="text" name="model.itemValue" value="#(model.itemValue??)"  class="layui-input">
+	</div>
+</div>
+<div class="layui-form-item">
+	<label class="layui-form-label">系统名称</label>
+	<div class="layui-input-block">
+	<select name="model.sysName"  class="layui-input" lay-search>
+<!-- 		 #for(x : list) -->
+<!--         <option value="#(x.sysName??)" #(x.sysName==model.sysName???'selected':'')>#(x.sysName??)</option> -->
+<!--     	 #end -->
+    	<option value="aps" #('aps'==model.sysName???'selected':'')>aps-征审系统</option>
+		<option value="cts" #('cts'==model.sysName???'selected':'')>cts-催收系统</option>
+		<option value="bms" #('bms'==model.sysName???'selected':'')>bms-借款系统</option>
+		<option value="cfs" #('cfs'==model.sysName???'selected':'')>cfs-录单系统</option>
+		<option value="pms" #('pms'==model.sysName???'selected':'')>pms-平台系统</option>
+		<option value="ams" #('ams'==model.sysName???'selected':'')>ams-信审系统</option>
+     </select>
+<!-- <input type="text" name="model.sysName" value="#(model.sysName??)"  class="layui-input"> -->
+	</div>
+</div>
+<div class="layui-form-item">
+	<label class="layui-form-label">排序号</label>
+	<div class="layui-input-block">
+		<input type="text" name="model.sortnum" value="#(model.sortnum??)" required lay-verify="number" class="layui-input">
+	</div>
+</div>
+<div class="layui-form-item">
+	<label class="layui-form-label">附件个数</label>
+	<div class="layui-input-block">
+		<input type="text" name="model.fileNumber" value="#(null==model.fileNumber???'20':model.fileNumber)" required lay-verify="required|number" class="layui-input">
+	</div>
+</div>
+<div class="layui-form-item">
+	<label class="layui-form-label">附件最大（兆）</label>
+	<div class="layui-input-block">
+		<input type="text" name="model.fileSize" value="#(null==model.fileSize???'5':model.fileSize)" required lay-verify="required|number" class="layui-input">
+	</div>
+</div>
+<div class="layui-form-item">
+	<label class="layui-form-label">附件格式</label>
+	<div class="layui-input-block">
+		<input type="text" name="model.fileType" value="#(null==model.fileType???'':model.fileType)" required lay-verify="required" class="layui-input">
+	</div>
+</div>
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="*">提交</button>
+    </div>
+  </div>
+  <head>
+<script type="text/javascript">
+  layui.use('form', function(){
+	  var form = layui.form(); //只有执行了这一步，部分表单元素才会修饰成功
+	   form.render();
+	});      
+</script>

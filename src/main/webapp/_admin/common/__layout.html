@@ -1,0 +1,41 @@
+#define adminLayout()
+<!DOCTYPE html>
+<html lang="zh-CN" xml:lang="zh-CN">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>#(seoTitle ?? "CPS PIC")</title>
+
+	<link rel="icon" type="image/x-icon" href="#(ctx)/assets/img/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="#(ctx)/assets/layui/css/layui.css">
+	<link rel="stylesheet" type="text/css" href="#(ctx)/assets/css/global.css?#version()">
+	
+	### 模板函数安全调用，找到 css() 模板函数则调用，找不到则直接跳过
+	### 适合于部分页面在 layout.html 提供的 css 文件之外，还需额外添加 css 资源的应用场景
+	#@css?()
+</head>
+
+<body>
+<!-- 头部容器 -->
+<div class="pic-header-box">
+</div>
+
+<!-- 中部主体容器 -->
+<div class="pic-body-box clearfix">
+	#@main()
+</div>
+
+<!-- 底部容器 -->
+<div class="pic-footer-box">
+</div>
+
+<script type="text/javascript" src="#(ctx)/assets/layui/layui.js"></script>
+
+### 模板函数安全调用，找到 js() 模板函数则调用，找不到则直接跳过
+### 适合于部分页面在 layout.html 提供的 js 文件之外，还需额外添加 js 资源的应用场景
+#@js?()
+</body>
+</html>
+#end

@@ -1,0 +1,81 @@
+<input type="hidden" name="model.id" value="#(model.id??)" />
+<input type="hidden" name="roleId" value="#(roleId??)" />
+<input type="hidden" name="model.roleId" value="#(model.roleId??)" />
+<div class="layui-form-item">
+	<label class="layui-form-label">证件类型</label>
+	<div class="layui-input-block">
+	<select name="pt.id"  class="layui-input" lay-search>
+		 #for(x : list) 
+        <option value="#(x.id??)" #(x.id==pt.id???'selected':'')>#(x.itemCode??)_#(x.itemValue??)</option>
+    	 #end 
+     </select>
+	</div>
+</div>
+<div class="layui-form-item">
+	<label class="layui-form-label">上传</label>
+	<div class="layui-input-block">
+    	<input name="model.operateAdd" value="1" #(1==model.operateAdd???'checked':'') title="允许"  type="radio">
+      	<input name="model.operateAdd" value="0" #(0==model.operateAdd???'checked':null==model.operateAdd???'checked':'') title="拒绝" type="radio">
+    </div>
+</div>
+<div class="layui-form-item">
+	<label class="layui-form-label">移动</label>
+	<div class="layui-input-block">
+    	<input name="model.operateMove" value="1" #(1==model.operateMove???'checked':'') title="允许"  type="radio">
+      	<input name="model.operateMove" value="0" #(0==model.operateMove???'checked':null==model.operateMove???'checked':'') title="拒绝" type="radio">
+    </div>
+</div>
+<div class="layui-form-item">
+	<label class="layui-form-label">删除</label>
+	<div class="layui-input-block">
+      <input name="model.operateRemove" value="1" #(1==model.operateRemove???'checked':'') title="允许"  type="radio">
+      <input name="model.operateRemove" value="0" #(0==model.operateRemove???'checked':null==model.operateRemove???'checked':'') title="拒绝" type="radio">
+    </div>
+</div>
+<div class="layui-form-item">
+	<label class="layui-form-label">下载</label>
+	<div class="layui-input-block">
+      <input name="model.operateDownload" value="1" #(1==model.operateDownload???'checked':'') title="允许"  type="radio">
+      <input name="model.operateDownload" value="0" #(0==model.operateDownload???'checked':null==model.operateDownload???'checked':'') title="拒绝" type="radio">
+    </div>
+</div>
+<div class="layui-form-item">
+	<label class="layui-form-label">重命名</label>
+	<div class="layui-input-block">
+      <input name="model.operateRename" value="1" #(1==model.operateRename???'checked':'') title="允许"  type="radio">
+      <input name="model.operateRename" value="0" #(0==model.operateRename???'checked':null==model.operateRename???'checked':'') title="拒绝" type="radio">
+    </div>
+</div>
+<div class="layui-form-item">
+	<label class="layui-form-label">作废</label>
+	<div class="layui-input-block">
+      <input name="model.operateWaste" value="1" #(1==model.operateWaste???'checked':'') title="允许"  type="radio">
+      <input name="model.operateWaste" value="0" #(0==model.operateWaste???'checked':null==model.operateWaste???'checked':'') title="拒绝" type="radio">
+    </div>
+</div>
+<div class="layui-form-item">
+	<label class="layui-form-label">补件</label>
+	<div class="layui-input-block">
+      <input name="model.operatePatchBolt" value="1" #(1==model.operatePatchBolt???'checked':'') title="允许"  type="radio">
+      <input name="model.operatePatchBolt" value="0" #(0==model.operatePatchBolt???'checked':null==model.operatePatchBolt???'checked':'') title="拒绝" type="radio">
+    </div>
+</div>
+<div class="layui-form-item">
+	<label class="layui-form-label">拖动排序</label>
+	<div class="layui-input-block">
+      <input name="model.operateDragSort" value="1" #(1==model.operateDragSort???'checked':'') title="允许"  type="radio">
+      <input name="model.operateDragSort" value="0" #(0==model.operateDragSort???'checked':null==model.operateDragSort???'checked':'') title="拒绝" type="radio">
+    </div>
+</div>
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="*">提交</button>
+    </div>
+  </div>
+<head>
+<script type="text/javascript">
+  layui.use('form', function(){
+	  var form = layui.form(); //只有执行了这一步，部分表单元素才会修饰成功
+	   form.render();
+	});  
+</script>

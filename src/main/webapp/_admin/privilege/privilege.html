@@ -1,0 +1,238 @@
+#set(seoTitle="账户管理")
+#@adminLayout()
+#define main()
+			<table class="layui-table">
+				<colgroup>
+					<button class="layui-btn layui-btn-primary layui-btn-mini am-fr am-margin-right role-add">
+				         <i class="layui-icon">&#xe654;</i>
+			        </button>
+				</colgroup>
+				#for(f : flist)
+				<thead>
+					<tr>
+						<th colspan="4">业务环节：#(f.nodeKey)</th>
+						<th colspan="7">业务环节名称：#(f.nodeName)</th>
+						<th colspan="1">
+							<div class="layui-btn-group">
+								<button class="layui-btn layui-btn-primary layui-btn-small role-update" data-id="#(f.id)">
+									<i class="layui-icon">&#xe642;</i>
+								</button>
+								<button class="layui-btn layui-btn-primary layui-btn-small role-delete" data-id="#(f.id)">
+									<i class="layui-icon">&#xe640;</i>
+								</button>
+							</div>
+						</th>
+					</tr>
+					<tr>
+					    <th>系统名称</th>
+					    <th>目录</th>
+					    <th>编号</th>
+						<th>上传</th>
+						<th>移动</th>
+						<th>删除</th>
+						<th>下载</th>
+						<th>重命名</th>
+						<th>作废</th>
+						<th>补件</th>
+						<th>拖动排序</th>
+						<th>操作
+							<button class="layui-btn layui-btn-primary layui-btn-mini am-fr am-margin-right privilege-add" data-roleId="#(f.id)" >
+								<i class="layui-icon">&#xe654;</i>
+							</button>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					#for(x : alist)
+						#if(x.roleId==f.id)
+					  <tr>
+						<td>#(x.sysName??'0')</td>
+						<td>#(x.itemValue??'0')</td>
+						<td>#(x.itemCode??'0')</td>
+						<td><i class="layui-icon">#(1==x.operateAdd???'&#xe605;':'&#x1006;')</td>
+						<td><i class="layui-icon">#(1==x.operateMove???'&#xe605;':'&#x1006;')</td>
+						<td><i class="layui-icon">#(1==x.operateRemove???'&#xe605;':'&#x1006;')</i></td>
+						<td><i class="layui-icon">#(1==x.operateDownload???'&#xe605;':'&#x1006;')</i></td>
+						<td><i class="layui-icon">#(1==x.operateRename???'&#xe605;':'&#x1006;')</i></td>
+						<td><i class="layui-icon">#(1==x.operateWaste???'&#xe605;':'&#x1006;')</i></td>
+						<td><i class="layui-icon">#(1==x.operatePatchBolt???'&#xe605;':'&#x1006;')</i></td>
+						<td><i class="layui-icon">#(1==x.operateDragSort???'&#xe605;':'&#x1006;')</i></td>
+						<td>
+							<div class="layui-btn-group">
+								<button class="layui-btn layui-btn-primary layui-btn-small privilege-update"   data-id="#(x.id)">
+									<i class="layui-icon">&#xe642;</i>
+								</button>
+								<button class="layui-btn layui-btn-primary layui-btn-small privilege-delete" data-id="#(x.id)">
+									<i class="layui-icon">&#xe640;</i>
+								</button>
+							</div>
+						</td>
+					</tr>
+					 	#end
+				 	#end
+				</tbody>
+				#end
+			</table>
+#end
+
+#define css()
+
+#end
+
+#define js()
+
+	<script type="text/javascript">
+			layui.define([ 'jquery', 'layer','form' ], function() {
+				var $ = layui.jquery, layer = layui.layer;
+			    var index;
+				//添加角色
+				$('.role-add').click(function(){
+					$.post('#(ctx)/admin/role/add',
+					function(data){
+						index=layer.open({
+							  title:false,
+							  type: 1,
+							  shadeClose: true, //开启遮罩关闭
+							  content: data
+						});
+					},'text')
+				});
+				//添加
+				$('.privilege-add').click(function(){
+					var roleId=$(this).attr('data-roleId');
+					$.post('#(ctx)/admin/privilege/add',
+							{roleId:roleId},
+					function(data){
+						index=layer.open({
+							  title:false,
+							  type: 1,
+							  shadeClose: true, //开启遮罩关闭
+							  content: data
+						});
+					},'text')
+				});
+				//修改角色
+				$('.role-update').click(function(){
+					var id=$(this).attr('data-id');
+					$.post('#(ctx)/admin/role/edit/'+id,
+						function(data){
+						index=layer.open({
+							  title:false,
+							  type: 1,
+							  shadeClose: true, //开启遮罩关闭
+							  content: data
+						});
+					},'text')
+				});
+				//修改
+				$('.privilege-update').click(function(){
+					var id=$(this).attr('data-id');
+					$.post('#(ctx)/admin/privilege/edit/'+id,
+						function(data){
+						index=layer.open({
+							  title:false,
+							  type: 1,
+							  shadeClose: true, //开启遮罩关闭
+							  content: data
+						});
+					},'text')
+				});
+				//删除
+				$('.privilege-delete').click(function() {
+					var id=$(this).attr('data-id');
+					layer.msg('确定删除?', {
+						time : 0,// 不自动关闭
+						btn : [ '确定', '取消' ],
+						yes : function(index) {
+							layer.close(index);
+							$.post('#(ctx)/admin/privilege/delete/'+id,
+								function(data){
+									if(data.isOk){
+										 layer.alert('删除成功', {
+											  title:false,
+											  skin: 'layui-layer-molv' //样式类名
+											  ,closeBtn: 0
+											}, function(){
+												location.reload();
+											});
+									  }else{
+										  layer.msg(data.msg);
+									  }
+								},'json');
+						}
+					});
+				});
+				//删除角色
+				$('.role-delete').click(function() {
+					var id=$(this).attr('data-id');
+					$.post('#(ctx)/admin/role/countById/'+id,
+							function(data){
+								if(data.isOk){
+									layer.msg('该环节下存在目录设置,删除后目录将一并删除,确定删除?', {
+										time : 0,// 不自动关闭
+										btn : [ '确定', '取消' ],
+										yes : function(index) {
+											layer.close(index);
+											$.post('#(ctx)/admin/role/delete/'+id,
+												function(data){
+													if(data.isOk){
+														 layer.alert('删除成功', {
+															  title:false,
+															  skin: 'layui-layer-molv' //样式类名
+															  ,closeBtn: 0
+															}, function(){
+																location.reload();
+															});
+													  }else{
+														  layer.msg(data.msg);
+													  }
+												},'json');
+										}
+									});
+								  }else{
+									  layer.msg('确定删除?', {
+											time : 0,// 不自动关闭
+											btn : [ '确定', '取消' ],
+											yes : function(index) {
+												layer.close(index);
+												$.post('#(ctx)/admin/role/delete/'+id,
+													function(data){
+														if(data.isOk){
+															 layer.alert('删除成功', {
+																  title:false,
+																  skin: 'layui-layer-molv' //样式类名
+																  ,closeBtn: 0
+																}, function(){
+																	location.reload();
+																});
+														  }else{
+															  layer.msg(data.msg);
+														  }
+													},'json');
+											}
+										}); 
+								  }
+					},'json');
+				});
+				//表单提交
+				var form = layui.form() //获取form模块
+				form.on('submit(*)', function(data){
+					  $.post(data.form.action,data.field,function(data){
+						  if(data.isOk){
+							  layer.close(index);
+							  layer.alert('成功', {
+								  title:false,
+								  skin: 'layui-layer-molv' //样式类名
+								  ,closeBtn: 0
+								}, function(){
+									location.reload();
+								});
+						  }else{
+							  layer.msg(data.msg);
+						  }
+					  })
+					  return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+			     });
+			});
+	</script>
+#end

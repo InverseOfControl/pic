@@ -1,0 +1,105 @@
+#set(seoTitle="PIC-日志管理") 
+#@adminLayout() 
+#define main()
+<table class="layui-table" style="margin-top: 0;">
+	<colgroup>
+		<form class="layui-form" action="" id="form">
+			<div class="am-margin-sm">
+				<div class="layui-inline">
+					<label class="layui-form-label">操作人姓名</label>
+					<div class="layui-input-inline">
+						<input  style="width: 100px;" name="operator"  class="layui-input" value="#(operator??)">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">工号</label>
+					<div class="layui-input-inline">
+						<input name="jobNumber" style="width: 120px;" class="layui-input" value="#(jobNumber??)">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">操作类型</label>
+					<div class="layui-input-block">
+						<select name="operationType" class="layui-input">
+							<option value=""></option>
+							<option value="文件上传" #(operationType=="文件上传"?"selected":"")>文件上传</option>
+							<option value="文件删除" #(operationType=="文件删除"?"selected":"")>文件删除</option>
+							<option value="重命名" #(operationType=="重命名"?"selected":"")>重命名</option>
+							<option value="文件作废" #(operationType=="文件作废"?"selected":"")>文件作废</option>
+							<option value="拖动排序" #(operationType=="排序"?"selected":"")>排序</option>
+							<option value="文件移动" #(operationType=="文件移动"?"selected":"")>文件移动</option>
+							<option value="文件列表" #(operationType=="文件列表"?"selected":"")>文件列表</option>
+							<option value="获取文件列表" #(operationType=="获取文件列表"?"selected":"")>获取文件列表</option>
+						</select>
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">操作时间</label>
+					<div class="layui-input-inline">
+						<input type="text" style="width: 120px;" value="#(operationStartTime??)" name="operationStartTime" lay-verify="date" placeholder="yyyy-mm-dd" class="layui-input" onclick="layui.laydate({elem: this})">
+					</div>
+					<div class="layui-input-inline">
+					    <input type="text" style="width: 120px;" value="#(operationEndTime??)" name="operationEndTime" lay-verify="date" placeholder="yyyy-mm-dd" class="layui-input" onclick="layui.laydate({elem: this})">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<button class="layui-btn layui-btn-small" lay-submit="" lay-filter="query">查询</button>
+					<a href="#(ctx)/admin/syslog/list"  class="layui-btn layui-btn-primary layui-btn-small">重置</a>
+				</div>
+			</div>
+		</form>
+	</colgroup>
+	<thead>
+		<tr>
+			<th>操作人姓名</th>
+			<th>工号</th>
+			<th>操作时间</th>
+			<th>操作类型</th>
+			<th>操作内容</th>
+			<th>Token</th>
+		</tr>
+	</thead>
+	<tbody>
+		#for(x : page.list)
+		<tr>
+			<td>#(x.operator)</td>
+			<td>#(x.jobNumber)</td>
+			<td>#(x.operationTime ??)</td>
+			<td>#(x.operationType ??)</td>
+			<td>#(x.operationContent ??)</td>
+			<td>#(x.token ??)</td>
+			</td>
+		</tr>
+		#end
+	</tbody>
+</table>
+<div id="page"></div>
+#end 
+#define js()
+<script type="text/javascript">
+	layui.define([ 'jquery', 'layer', 'form', 'laypage','laydate' ], function() {
+		var $ = layui.jquery, layer = layui.layer, laypage = layui.laypage;
+		//表单提交
+		var form = layui.form() //获取form模块
+		var pageNumber=1;
+		//分页
+	    laypage({
+			cont : 'page',
+			pages : #(page.totalPage),
+			groups : #(page.pageSize),
+			curr: #(page.pageNumber),
+			skip: true,
+			jump : function(obj, first) {
+				pageNumber = obj.curr;
+				if(!first)
+				window.location.href='#(ctx)/admin/syslog/list?pageNumber='+pageNumber+'&'+$("#form").serialize(); 
+			}
+		 });
+		  //监听提交
+		  form.on('submit', function(data){
+			window.location.href='#(ctx)/admin/syslog/list?pageNumber='+pageNumber+'&'+$("#form").serialize(); 
+		    return false;
+		  });
+	});
+</script>
+#end

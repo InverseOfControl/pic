@@ -1,0 +1,12 @@
+<input type="hidden" name="model.id" value="#(model.id??)" />
+<div class="layui-form-item">
+	<label class="layui-form-label">标签名称</label>
+	<div class="layui-input-block">
+		<input type="text" name="model.tagName" value="#(model.tagName??)" required lay-verify="required" class="layui-input">
+	</div>
+</div>
+<div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="*">提交</button>
+    </div>
+</div>

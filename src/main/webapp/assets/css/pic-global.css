@@ -1,0 +1,523 @@
+/* 框体 */
+#picApp {
+	margin: 0;
+	font-size: 12px;
+	font-family: "微软雅黑", "Open Sans", "Helvetica Neue", Helvetica, Arial,
+		STHeiti, "Microsoft Yahei", sans-serif;
+	background: #fff;
+	color: #333;
+}
+
+#pic-wrapper {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	min-width: 200px;
+	_width: 100%;
+	_height: 530px;
+}
+/* 布局 */
+.pic-side {
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	z-index: 9;
+	position: absolute;
+	width: 194px;
+	height: 100%;
+}
+
+.pic-body {
+	top: 0px;
+	left: 194px;
+	bottom: 0px;
+	right: 0px;
+	z-index: 1;
+	background: #fff;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	position: absolute;
+	height: 100%;
+	overflow: hidden;
+}
+
+/* layout right */
+.layout-side-right {
+	right: 0;
+	left: auto;
+}
+
+.layout-body-right {
+	left: 0;
+	right: 194px;
+}
+/* --------------------------左侧  目录 */
+/* 标题  */
+.pic-side .title {
+	font-weight: 400;
+	font-family: proxima-nova, 'Helvetica Neue', Helvetica, Arial,
+		sans-serif;
+	color: grey;
+	background: hsla(0, 0%, 100%, .3);
+	border-bottom: 0;
+}
+
+.pic-sidebar-box {
+	/* padding: 4px; */
+	
+}
+
+/* 列表  */
+.pic-sidebar-box ul {
+	padding: 0;
+	margin: 0;
+}
+
+.pic-sidebar-box li {
+	line-height: 20px;
+	text-decoration: none;
+	display: block;
+	padding: 3px;
+	background-repeat: no-repeat;
+}
+
+.pic-sidebar-box li:hover {
+	background-color: #E0E0E0;
+}
+
+.pic-sidebar-box li.active {
+	background-color: #E0E0E0;
+}
+
+.pic-sidebar-box li a {
+	color: #424e67;
+	display: block;
+	position: relative;
+	padding: 0 0 0 8px;
+	font-size: 14px;
+	text-decoration: none;
+	zoom: 1;
+}
+
+.pic-sidebar-box li a.readonly {
+	color: #ccc;
+}
+
+.pic-sidebar-box li.active a {
+	color: #424e67;
+}
+
+.pic-sidebar-box li.active a.readonly {
+	color: #ccc;
+}
+
+/* -----------------------按钮  */
+.pic-tool button {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+#picApp #file {
+	display: none;
+}
+
+.pic-btn {
+	-webkit-appearance: none;
+	background-image: -webkit-linear-gradient(#ededed, #ededed 38%, #dedede);
+	border: 1px solid rgba(0, 0, 0, 0.25);
+	border-radius: 2px;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08), inset 0 1px 2px
+		rgba(255, 255, 255, 0.75);
+	color: #444;
+	font: inherit;
+	margin: 0 1px 0 0;
+	outline: none;
+	text-shadow: 0 1px 0 rgb(240, 240, 240);
+	user-select: none;
+	min-height: 2em;
+	min-width: 4em;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	-webkit-padding-end: 10px;
+	-webkit-padding-start: 10px;
+}
+
+label.pic-btn {
+	min-height: 1.5em;
+	min-width: 2em;
+}
+
+.pic-btn:hover {
+	color: #333;
+	background-color: #e6e6e6;
+	border-color: #adadad;
+}
+
+.pic-btn:active {
+	color: #333;
+	background-color: #d4d4d4;
+	border-color: #8c8c8c;
+}
+
+.pic-btn:DISABLED {
+	background-image: -webkit-linear-gradient(#f1f1f1, #f1f1f1 38%, #e6e6e6);
+	border-color: rgba(80, 80, 80, 0.2);
+	box-shadow: 0 1px 0 rgba(80, 80, 80, 0.08), inset 0 1px 2px
+		rgba(255, 255, 255, 0.75);
+	color: #aaa;
+}
+/* -----------------------标签  */
+.pic-tag {
+	padding-bottom: 0.5em;
+}
+
+.pic-breadcrumb a {
+	color: #424e67;
+	padding-right: 8px;
+	line-height: 22px;
+	font-size: 14px;
+	color: #333 !important;
+	text-decoration: none;
+	padding-right: 8px;
+}
+
+.pic-breadcrumb a:hover {
+	color: #01AAED !important;
+}
+
+/* -----------------------文件列表  */
+.pic-content {
+	box-sizing:border-box;
+	border-top: 1px solid #e9e9e9;
+}
+/* 块 表格  */
+.pic-grid-view {
+	height: auto;
+}
+
+.pic-grid-view .pic-grid-view-item {
+	width: 120px;
+	height: 127px;
+	float: left;
+	margin: 4px 0 0 6px;
+	text-align: center;
+	border: 1px solid #fff;
+	position: relative;
+}
+
+.pic-grid-view .pic-grid-view-item:HOVER {
+	background-color: #f1f5fa;
+	border: 1px solid #f1f5fa;
+	border-radius: 5px;
+}
+
+.pic-grid-view .pic-grid-view-item:active, .pic-grid-view .pic-grid-view-item.active
+	{
+	background-color: #f1f5fa;
+	border: 1px solid #90c3fd;
+	border-radius: 5px;
+}
+
+.pic-grid-view .pic-grid-view-item .fileicon {
+	cursor: pointer;
+}
+
+.pic-grid-view .pic-grid-view-item .fileicon {
+	position: relative;
+	margin: 9px auto 0;
+	width: 84px;
+	height: 84px;
+	background-repeat: no-repeat;
+	overflow: hidden;
+}
+
+.pic-grid-view .pic-grid-view-item .fileicon img {
+	padding: 0;
+	margin: 0;
+	max-width: 120px;
+	_width: expression(this.width > 120 ? "120px" : this.width);
+}
+
+.pic-grid-view .pic-grid-view-item .fileicon .thumb {
+	overflow: hidden;
+}
+
+.pic-grid-view .pic-grid-view-item .file-name {
+	display: block;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	margin: 6px 5px 5px;
+}
+
+.pic-grid-view .pic-grid-view-item .file-name a {
+	color: #424e67;
+	cursor: default;
+	font-size: 14px;
+	text-decoration: none;
+}
+
+.pic-grid-view .pic-grid-view-item .file-name a:HOVER {
+	cursor: pointer;
+	text-decoration: none;
+	color: #3B8CFF;
+}
+
+.pic-grid-view .pic-grid-view-item .checkbox {
+	position: absolute;
+	top: -1px;
+	left: -1px;
+	height: 21px;
+	width: 21px;
+	display: none;
+	cursor: pointer;
+}
+
+.pic-grid-view .pic-grid-view-item .tags {
+	position: absolute;
+	top: 76px;
+	left: 20px;
+	font-size: 11px;
+	vertical-align: baseline;
+	white-space: nowrap;
+	text-align: center;
+	border-radius: 10;
+	background: #c0c0c0;
+	*zoom: 1;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.pic-grid-view .pic-grid-view-item .tags span {
+	color: #FFFFFF;
+	position: relative; /* 设置子元素为相对定位，可让子元素不继承Alpha值 */
+}
+
+.pic-grid-view .pic-grid-view-item:hover .checkbox, .pic-grid-view .pic-grid-view-item.active .checkbox
+	{
+	display: block;
+}
+
+.pic-grid-view .pic-grid-view-item .error {
+	color: #dd514c;
+	vertical-align: middle !important;
+}
+
+/* 图标  */
+.fileicon-large-excel {
+	background: url(../img/excel.png) center no-repeat;
+}
+
+.fileicon-large-exe {
+	background: url(../img/exe.png) center no-repeat;
+}
+
+.fileicon-large-misc {
+	background: url(../img/misc.png) center no-repeat;
+}
+
+.fileicon-large-text {
+	background: url(../img/text.png) center no-repeat;
+}
+
+.fileicon-large-word {
+	background: url(../img/word.png) center no-repeat;
+}
+
+.fileicon-large-zip {
+	background: url(../img/zip.png) center no-repeat;
+}
+
+.fileicon-large-pdf {
+	background: url(../img/pdf.png) center no-repeat;
+}
+
+/* 多选框  */
+.pic-btn-dropdown {
+	/* Size and position */
+	position: relative;
+	margin: 0 auto;
+	/* Styles */
+	cursor: pointer;
+	outline: none;
+}
+
+.pic-btn-dropdown:after {
+	content: "";
+	width: 0;
+	height: 0;
+	position: absolute;
+	right: 2px;
+	top: 50%;
+	margin-top: -3px;
+	border-width: 4px 4px 0 4px;
+	border-style: solid;
+	border-color: #000000 transparent;
+}
+
+.pic-btn-dropdown .dropdown {
+	width: 130px;
+	/* Size & position */
+	position: absolute;
+	top: 100%;
+	margin-top: 1px;
+	left: -1px;
+	right: -1px;
+	/* Styles */
+	background: white;
+	border: inherit;
+	border-top: none;
+	list-style: none;
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-ms-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
+	/* Hiding */
+	opacity: 0;
+	pointer-events: none;
+	padding: 0;
+	z-index: 200;
+}
+
+/* Red lines: the gradients way */
+.pic-btn-dropdown .dropdown li {
+	position: relative; /* Enable absolute positioning for checkboxes */
+}
+
+.pic-btn-dropdown .dropdown li:FIRST-CHILD {
+	border-top: 1px solid #c0c0c0;
+}
+
+.pic-btn-dropdown .dropdown li label {
+	display: block;
+	padding: 6px 6px 6px 0px; /* Same padding as the button */
+	border-bottom: 1px dotted #c0c0c0;
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-ms-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
+}
+
+.pic-btn-dropdown .dropdown li:last-of-type label {
+	border: none;
+}
+
+.pic-btn-dropdown .dropdown li input /* Checkboxes */ {
+	position: absolute;
+	display: block;
+	right: 10px;
+	top: 50%;
+	margin-top: -8px;
+}
+
+/* Hover state */
+.pic-btn-dropdown .dropdown li:hover label {
+	background: #f0f0f0;
+}
+
+/* Checked state */
+.pic-btn-dropdown .dropdown li input:checked ~ label {
+	color: grey;
+}
+
+/* Active state */
+.pic-btn-dropdown.active:after {
+	border-width: 0 4px 4px 4px;
+}
+
+.pic-btn-dropdown.active .dropdown {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+/* No CSS3 support */
+.no-opacity       pic-btn-dropdown .dropdown, .no-pointerevents .pic-btn-dropdown .dropdown
+	{
+	display: none;
+	opacity: 1; /* If opacity support but no pointer-events support */
+	pointer-events: auto;
+	/* If pointer-events support but no pointer-events support */
+}
+
+.no-opacity       .pic-btn-dropdown.active .dropdown, .no-pointerevents .pic-btn-dropdown.active .dropdown
+	{
+	display: block;
+}
+
+/* 重命名 */
+.tip-yellowsimple {
+	z-index: 1000;
+	text-align: left;
+	border: 1px solid #939393;
+	padding: 7px;
+	min-width: 50px;
+	max-width: 530px;
+	color: #8c3901;
+	background-color: #ffffff;
+}
+
+/* 上传弹窗  工具条 */
+.pic-upload-tool {
+	padding: 5px 30px 5px 30px;
+	background: #fbfbfb;
+	border-top: 1px solid #efefef;
+	border-bottom: 1px solid #efefef;
+	color: #ccc;
+}
+
+.clear {
+	clear: both;
+}
+
+.pic-upload-tool .left {
+	float: left;
+}
+
+.pic-upload-tool .right {
+	float: right;
+}
+/* 上传进度条 */
+.pic-progress {
+	height: 20px;
+	background: #ebebeb;
+	border-left: 1px solid transparent;
+	border-right: 1px solid transparent;
+	border-radius: 10px;
+}
+/* min-width: 30px; */
+.pic-progress>span {
+	position: relative;
+	float: left;
+	margin: 0 -1px;
+	height: 18px;
+	line-height: 16px;
+	text-align: right;
+	background: #cccccc;
+	border: 1px solid;
+	border-color: #bfbfbf #b3b3b3 #9e9e9e;
+	border-radius: 10px;
+	background-image: -webkit-linear-gradient(top, #f0f0f0 0%, #dbdbdb 70%, #cccccc 100%);
+	background-image: -moz-linear-gradient(top, #f0f0f0 0%, #dbdbdb 70%, #cccccc 100%);
+	background-image: -o-linear-gradient(top, #f0f0f0 0%, #dbdbdb 70%, #cccccc 100%);
+	background-image: linear-gradient(to bottom, #f0f0f0 0%, #dbdbdb 70%, #cccccc 100%);
+	-webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), 0 1px 2px
+		rgba(0, 0, 0, 0.2);
+	box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), 0 1px 2px
+		rgba(0, 0, 0, 0.2);
+}
+
+.pic-progress>span:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 1;
+	height: 18px;
+	background: url(../img/progress.png) 0 0 repeat-x;
+	border-radius: 10px;
+}

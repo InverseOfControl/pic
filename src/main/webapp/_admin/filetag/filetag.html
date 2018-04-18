@@ -1,0 +1,125 @@
+#set(seoTitle="账户管理")
+#@adminLayout()
+#define main()
+<div class="paperstype-content-box">
+	<fieldset class="layui-elem-field">
+		<legend>标签维护</legend>
+		<div class="layui-field-box">
+			<table class="layui-table">
+				<colgroup>
+					<col width="150">
+					<col width="200">
+					<col>
+				</colgroup>
+				<thead>
+					<tr>
+					    <th>标签名称</th>
+						<th>操作
+							<button class="layui-btn layui-btn-primary layui-btn-mini am-fr am-margin-right filetag-add">
+									<i class="layui-icon">&#xe654;</i>
+							</button>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+				   #for(x : list)
+					 <tr>
+						<td>#(x.tagName)</td>
+						<td>
+							<div class="layui-btn-group">
+								<button class="layui-btn layui-btn-primary layui-btn-small filetag-update" data-id="#(x.id)">
+									<i class="layui-icon">&#xe642;</i>
+								</button>
+								<button class="layui-btn layui-btn-primary layui-btn-small filetag-delete" data-id="#(x.id)">
+									<i class="layui-icon">&#xe640;</i>
+								</button>
+							</div>
+						</td>
+					 </tr>
+					#end
+				</tbody>
+			</table>
+		</div>
+	</fieldset>
+</div>
+#end
+
+#define css()
+
+#end
+
+#define js()
+
+	<script type="text/javascript">
+			layui.define([ 'jquery', 'layer','form' ], function() {
+				var $ = layui.jquery, layer = layui.layer;
+			    var index;
+				//添加
+				$('.filetag-add').click(function(){
+					$.post('#(ctx)/admin/filetag/add',function(data){
+						index=layer.open({
+							  title:false,
+							  type: 1,
+							  shadeClose: true, //开启遮罩关闭
+							  content: data
+						});
+					},'text')
+				});
+				//修改
+				$('.filetag-update').click(function(){
+					var id=$(this).attr('data-id');
+					$.post('#(ctx)/admin/filetag/edit/'+id,function(data){
+						index=layer.open({
+							  title:false,
+							  type: 1,
+							  shadeClose: true, //开启遮罩关闭
+							  content: data
+						});
+					},'text')
+				});
+				//删除
+				$('.filetag-delete').click(function() {
+					var id=$(this).attr('data-id');
+					layer.msg('确定删除嘛?', {
+						time : 0,// 不自动关闭
+						btn : [ '确定', '取消' ],
+						yes : function(index) {
+							$.post('#(ctx)/admin/filetag/delete/'+id,
+								function(data){
+									if(data.isOk){
+										 layer.alert('删除成功', {
+											  title:false,
+											  skin: 'layui-layer-molv' //样式类名
+											  ,closeBtn: 0
+											}, function(){
+												location.reload();
+											});
+									  }else{
+										  layer.msg(data.msg);
+									  }
+								},'json');
+						}
+					});
+				});
+				//表单提交
+				var form = layui.form() //获取form模块
+				form.on('submit(*)', function(data){
+					  $.post(data.form.action,data.field,function(data){
+						  if(data.isOk){
+							  layer.close(index);
+							  layer.alert('成功', {
+								  title:false,
+								  skin: 'layui-layer-molv' //样式类名
+								  ,closeBtn: 0
+								}, function(){
+									location.reload();
+								});
+						  }else{
+							  layer.msg(data.msg);
+						  }
+					  })
+					  return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+			     });
+			});
+	</script>
+#end

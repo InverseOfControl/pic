@@ -1,0 +1,25 @@
+<input type="hidden" name="model.id" value="#(model.id??)" />
+<div class="layui-form-item">
+	<label class="layui-form-label">业务环节</label>
+	<div class="layui-input-block">
+		<input type="text" name="model.nodeKey" required lay-verify="required"  value="#(model.nodeKey??)"  class="layui-input">
+	</div>
+</div>
+<div class="layui-form-item">
+	<label class="layui-form-label">业务环节名称</label>
+	<div class="layui-input-block">
+		<input type="text" name="model.nodeName" required lay-verify="required"  value="#(model.nodeName??)"  class="layui-input">
+	</div>
+</div>
+<div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="*">提交</button>
+    </div>
+</div>
+  <head>
+<script type="text/javascript">
+  layui.use('form', function(){
+	  var form = layui.form(); //只有执行了这一步，部分表单元素才会修饰成功
+	   form.render();
+	});  
+</script>

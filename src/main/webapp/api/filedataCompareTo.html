@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xml:lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>#(title ?? "PIC 文件比对")</title>
+<link rel="icon" type="image/x-icon" href="#(ctx)/assets/img/favicon.ico">
+<style type="text/css">
+html, body {
+	height: 100%;
+	border: none;
+	padding: 0px;
+	margin: 0px;
+	overflow: hidden;
+}
+
+#picApp iframe {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+</style>
+</head>
+<body id="picApp">
+	<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td><iframe class="left" frameborder="0"
+					src="#(ctx)/api/filedata?nodeKey=#(nodeKey)&sysName=#(sysName)&appNo=#(appNo)&imageViewFullScreen=N&title=#(title)&layout=left&view=Y&operator=#(operator)&jobNumber=#(jobNumber)"></iframe></td>
+			<td><iframe class="right" frameborder="0"
+					src="#(ctx)/api/filedata?nodeKey=#(nodeKey)&sysName=#(sysName)&appNo=#(appNo2)&imageViewFullScreen=N&title=#(title2)&layout=right&view=Y&operator=#(operator)&jobNumber=#(jobNumber)"></iframe></td>
+		</tr>
+	</table>
+</body>
+</html>

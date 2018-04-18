@@ -1,0 +1,185 @@
+.pic-img-dialog {
+	position: absolute;
+	background-color: rgba(0, 0, 0, .5);
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	z-index: 100000;
+	overflow: hidden;
+}
+
+.pic-img-dialog .dlg-hd {
+	z-index: 900000;
+	position: absolute;
+	top: -40px;
+	right: -40px;
+	width: 80px;
+	height: 80px;
+	overflow: hidden;
+	cursor: pointer;
+	background-color: #000;
+	background-color: rgba(0, 0, 0, .5);
+	border-radius: 50%;
+}
+
+.pic-img-dialog .dlg-hd:before {
+	position: absolute;
+	bottom: 15px;
+	left: 15px;
+}
+
+.pic-img-dialog .dlg-hd .dlg-img-close {
+	width: 40px;
+	height: 80px;
+	cursor: pointer;
+	display: block;
+	background: url(img/img_preview_ic.png) -5px -163px no-repeat;
+	z-index: 900000;
+}
+
+.pic-img-dialog .dlg-hd .dlg-img-close:hover {
+	background-position: -396px -79px;
+}
+
+.pic-img-dialog .content {
+	position: absolute;
+}
+
+.pic-img-dialog .content span {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.pic-img-dialog .content img {
+	vertical-align: middle;
+}
+
+.pic-img-dialog .operate-area {
+	margin: 0 auto;
+	white-space: nowrap;
+	overflow: hidden;
+	z-index: 10;
+	position: absolute;
+	bottom: 0px;
+	text-align: center;
+	height: 38px;
+	opacity: 0.4;
+	width: 100%;
+	background-color: #000;
+    opacity: .5;
+    filter: alpha(opacity=50);
+}
+
+.pic-img-dialog .operate-area .operate-container {
+	margin: 0 auto;
+	line-height: 38px;
+	text-align: center;
+	width: 240px;
+}
+
+.pic-img-dialog .operate-area .img-control {
+	height: 38px;
+	position: relative;
+}
+
+.pic-img-dialog .operate-area .control {
+	display: block;
+	cursor: pointer;
+	background: url(img/img_preview_ic.png) 0 0 no-repeat;
+	float: left;
+	margin: 0 8px;
+	height: 38px;
+	width: 30px;
+}
+
+.pic-img-dialog .operate-area .control-left {
+	background-position: -136px 7px;
+}
+
+.pic-img-dialog .operate-area .control-left:hover {
+	background-position: -136px -34px
+}
+
+.pic-img-dialog .operate-area .control-right {
+	background-position: -179px 7px;
+}
+
+.pic-img-dialog .operate-area .control-right:hover {
+	background-position: -179px -34px
+}
+
+.pic-img-dialog .operate-area .control-last {
+	margin-top: 10px;
+	width: 20px;
+	height: 20px;
+	background-position: -157px -205px;
+}
+
+.pic-img-dialog .operate-area .control-last:hover {
+	background-position: -157px -229px;
+}
+
+.pic-img-dialog .operate-area .control-next {
+	margin-top: 10px;
+	width: 20px;
+	height: 20px;
+	background-position: -139px -205px;
+}
+
+.pic-img-dialog .operate-area .control-next:hover {
+	background-position: -189px -229px;
+}
+
+.pic-img-dialog .operate-area .control-count {
+	background-position: 0 -268px;
+}
+
+.pic-img-dialog .operate-area span.control-count {
+	color: #e6e6e6;
+	font-weight: bold;
+	font-size: 16px;
+	position: relative;
+}
+
+.pic-img-dialog .rot0 {
+	
+}
+
+.pic-img-dialog .viewer-move {
+	cursor: move;
+	cursor: -webkit-grab;
+	cursor: -moz-grab;
+	cursor: grab;
+}
+
+.viewer-transition {
+  -webkit-transition: all .3s ease-out;
+  -o-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+}
+
+.pic-img-dialog .rot1 {
+	-moz-transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+	-ms-filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+}
+
+.pic-img-dialog .rot2 {
+	-moz-transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+	transform: rotate(180deg);
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+	-ms-filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+}
+
+.pic-img-dialog .rot3 {
+	-moz-transform: rotate(270deg);
+	-webkit-transform: rotate(270deg);
+	transform: rotate(270deg);
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+	-ms-filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
